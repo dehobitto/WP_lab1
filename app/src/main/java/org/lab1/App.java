@@ -4,20 +4,12 @@
 package org.lab1;
 
 import org.lab1.courier.Courier;
+import org.lab1.courier.CourierRepository;
 
 public class App {
     public static void main(String[] args) {
-        while(true)
-        {
-            Courier cor = new Courier();
-
-            System.out.println(cor.getId());
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        CourierRepository cr = new CourierRepository();
+        var c = new Courier();
+        cr.remove(c);
     }
 }

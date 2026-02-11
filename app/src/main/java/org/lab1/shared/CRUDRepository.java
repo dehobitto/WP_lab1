@@ -1,30 +1,31 @@
 package org.lab1.shared;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public abstract class CRUDRepository <CRUDObject>
+public abstract class CRUDRepository<T extends CRUDObject>
 {
-    final private ArrayList<CRUDObject> repository = new ArrayList<CRUDObject>();
+    final private Map<Long, T> repository = new HashMap<>();
 
-    protected CRUDObject getById(int id) {
+    protected T getById(Long id) {
         return repository.get(id);
     }
 
-    public void add(CRUDObject type) {
-        repository.add(type);
+    public void add(T obj) {
+        repository.put(obj.getId(), obj);
     }
 
-    public void remove(CRUDObject type) {
-        repository.remove(type);
-
+    public void remove(T type) {
+        try
+        {
+            repository.remove(type.getId());
+        }catch (NullPointerException e){
+            // TODO: LOG
+        }
         // TODO: check for this not being in repos
     }
 
-    public List<CRUDObject> getAll() {
-        return Collections.unmodifiableList(repository);
+    public List<T> getAll() {
+        return List.copyOf(repository.values());
     }
 
-    public abstract CRUDObject update(int id);
 }

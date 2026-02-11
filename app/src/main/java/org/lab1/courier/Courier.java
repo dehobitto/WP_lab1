@@ -8,7 +8,7 @@ import static org.lab1.courier.Status.*;
 public class Courier extends CRUDObject {
   private Status status = FREE;
 
-  public Status getStatus() {return status}
+  public Status getStatus() {return status;}
   public void setStatus(Status status) {this.status = status;}
 
   private Parcel parcel = null;
