@@ -1,4 +1,4 @@
-package ord.lab1.courier;
+package org.lab1.courier;
 
 public enum Status
 {
