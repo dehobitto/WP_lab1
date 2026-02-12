@@ -1,7 +1,9 @@
 package org.lab1.shared;
 
 public abstract class CRUDObject {
-    static Long id = 0L;
+    private static Long idСounter = 0L;
+    private Long id;
+    private static synchronized long getNextId() {return ++idСounter;}
 
     public CRUDObject()
     {
@@ -10,10 +12,5 @@ public abstract class CRUDObject {
 
     public Long getId() {
         return id;
-    }
-
-    protected long getNextId()
-    {
-        return ++id;
     }
 }
