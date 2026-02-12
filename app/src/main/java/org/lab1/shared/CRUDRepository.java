@@ -1,7 +1,10 @@
 package org.lab1.shared;
 
+import lombok.extern.java.Log;
+
 import java.util.*;
 
+@Log
 public abstract class CRUDRepository<T extends CRUDObject>
 {
     final private Map<Long, T> repository = new HashMap<>();
@@ -15,17 +18,16 @@ public abstract class CRUDRepository<T extends CRUDObject>
     }
 
     public void remove(T type) {
-        try
+        if (repository.containsKey(type.getId()))
         {
             repository.remove(type.getId());
-        }catch (NullPointerException e){
-            // TODO: LOG
+        }else
+        {
+            log.warning("Tried to remove a non-existent entity with id " + type.getId());
         }
-        // TODO: check for this not being in repos
     }
 
     public List<T> getAll() {
         return List.copyOf(repository.values());
     }
-
 }

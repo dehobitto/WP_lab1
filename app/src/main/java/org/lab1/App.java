@@ -3,11 +3,14 @@
  */
 package org.lab1;
 
+import lombok.extern.java.Log;
 import org.lab1.courier.Courier;
 import org.lab1.courier.CourierRepository;
 
+@Log
 public class App {
     public static void main(String[] args) {
+        log.info("Application Started...");
         CourierRepository cr = new CourierRepository();
         var c = new Courier();
         cr.remove(c);

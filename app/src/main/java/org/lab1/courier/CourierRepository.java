@@ -14,7 +14,7 @@ public class CourierRepository extends CRUDRepository<Courier> {
     public void update(Long id, Parcel parcel)
     {
         var courier = this.getById(id);
-        courier.setParcel(parcel);
+        courier.assignParcel(parcel);
         // TODO: LOG
     }
 }
